@@ -204,10 +204,21 @@ function seachPersonByCityOrState() {
 //Function to view person by city or state(UC9)
 function viewPersonsByCityOrState() {
     try {
-        let cityOrState = prompt("Enter A City Or State Name To Find Person : ");
+        let cityOrState = prompt("Enter A City Or State Name To View Person : ");
         addressBookContactArr.filter((contact) => contact.city == cityOrState || contact.state == cityOrState).map((cs) => {
             cs.city.includes(cityOrState) ? console.log(`${cs.firstName} ${cs.lastName} Lives In City ${cs.city}`) : console.log(`${cs.firstName} ${cs.lastName} Lives In State ${cs.state}`)
         });
+    } catch (e) {
+        console.error(e);
+    }
+}
+
+//Function to count person by city or state(UC10)
+function countPersonsByCityOrState() {
+    try {
+        let cityOrState = prompt("Enter A City Or State Name To Count Person : ");
+        let count = addressBookContactArr.filter((contact) => contact.city == cityOrState || contact.state == cityOrState).reduce((contact) => contact + 1, 0)
+        console.log(`The Count Of Persons in ${cityOrState} Is : ${count}`)
     } catch (e) {
         console.error(e);
     }
@@ -217,7 +228,8 @@ function viewPersonsByCityOrState() {
 function addressBookOperations() {
     try {
         while (true) {
-            console.log("1: Add New Contact \n2: Add Default Contacts \n3: Display Contact\n4: Edit And View Contact \n5: Delete Contact \n6: Count Contacts \n7: Search Person \n8: View Persons By City Or State \n9: Exit");
+            console.log("1: Add New Contact \n2: Add Default Contacts \n3: Display Contact\n4: Edit And View Contact \n5: Delete Contact \n6: Count Contacts \n7: Search Person \n8: View Persons By City Or State \
+                \n9: Count Persons By City Or State \n10: Exit ");
             switch (parseInt(prompt('Enter the choice : '))) {
                 case 1:
                     getContactDetails();
@@ -244,6 +256,9 @@ function addressBookOperations() {
                     viewPersonsByCityOrState();
                     break;
                 case 9:
+                    countPersonsByCityOrState();
+                    break;
+                case 10:
                     console.log("Exited");
                     process.exit(1)
                     break;
