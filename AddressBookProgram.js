@@ -180,7 +180,7 @@ function deleteContact() {
     }
 }
 
-//Function to count contact in addressbook(UC6)
+//Function to count contacts in addressbook(UC6)
 function countContact() {
     try {
         let countContact = addressBookContactArr.reduce((contact) => contact + 1, 0)
@@ -190,7 +190,7 @@ function countContact() {
     }
 }
 
-//Function to seach person in a particular city or state(UC8)
+//Function to seach contacts in a particular city or state(UC8)
 function seachPersonByCityOrState() {
     try {
         let cityOrState = prompt("Enter A City Or State Name To Find Person : ");
@@ -201,7 +201,7 @@ function seachPersonByCityOrState() {
     }
 }
 
-//Function to view person by city or state(UC9)
+//Function to view contacts by city or state(UC9)
 function viewPersonsByCityOrState() {
     try {
         let cityOrState = prompt("Enter A City Or State Name To View Person : ");
@@ -213,7 +213,7 @@ function viewPersonsByCityOrState() {
     }
 }
 
-//Function to count person by city or state(UC10)
+//Function to count contacts by city or state(UC10)
 function countPersonsByCityOrState() {
     try {
         let cityOrState = prompt("Enter A City Or State Name To Count Person : ");
@@ -224,12 +224,21 @@ function countPersonsByCityOrState() {
     }
 }
 
-//Function to perform addressbook operations(UC3-UC9)
+//Function to sort the contacts by name(UC11)
+function sortContactsByName() {
+    try {
+        addressBookContactArr.sort((x, y) => x.firstName > y.firstName ? 1 : -1);
+        console.log(`\nContacts Sorted By First Name : \n${addressBookContactArr.join("\n")}`)
+    } catch (e) {
+        console.error(e);
+    }
+}
+//Function to perform addressbook operations(UC3-UC11)
 function addressBookOperations() {
     try {
         while (true) {
             console.log("1: Add New Contact \n2: Add Default Contacts \n3: Display Contact\n4: Edit And View Contact \n5: Delete Contact \n6: Count Contacts \n7: Search Person \n8: View Persons By City Or State \
-                \n9: Count Persons By City Or State \n10: Exit ");
+                \n9: Count Persons By City Or State \n10: Sort Contacts By Name \n11: Exit ");
             switch (parseInt(prompt('Enter the choice : '))) {
                 case 1:
                     getContactDetails();
@@ -259,6 +268,9 @@ function addressBookOperations() {
                     countPersonsByCityOrState();
                     break;
                 case 10:
+                    sortContactsByName();
+                    break;
+                case 11:
                     console.log("Exited");
                     process.exit(1)
                     break;
@@ -271,5 +283,5 @@ function addressBookOperations() {
         console.error(e);
     }
 }
-//Calling the addressbook operation functions(UC3-UC9)
+//Calling the addressbook operation functions(UC3-UC11)
 addressBookOperations();
