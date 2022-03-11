@@ -55,14 +55,16 @@ console.log("Welcome To The AddressBook Program Using Js")
 
 //Function to return object of added contacts(UC1)
 function addContact(firstName, lastName, address, city, state, zipCode, phoneNumber, emailId) {
-    let contact
     try {
-        //Object for class
-        contact = new Contact(firstName, lastName, address, city, state, zipCode, phoneNumber, emailId);
+        //Using filter to ensure no duplicate entry is done in the addressbook contact(UC7) 
+        let checkContact = addressBookContactArr.filter((contact) => contact.firstName == firstName && contact.lastName == lastName);
+        if (checkContact.length == 0) {
+            let contact = new Contact(firstName, lastName, address, city, state, zipCode, phoneNumber, emailId);
+            addressBookContactArr.push(contact)
+        } else console.log("Contact With Same Name Is Already Present")
     } catch (e) {
         console.error(e)
     }
-    addressBookContactArr.push(contact);
 }
 
 //Fucntion to add default contact into an array(C3)
@@ -70,7 +72,7 @@ function addDefaultContactDetails() {
     try {
         addContact("Rajkumar", "Verma", "Ghansoli", "NaviMumbai", "Maharashtra", "456123", "91 9517534561", "raj123@gmail.com");
         addContact("Yash", "Verma", "Sec-45", "Noida", "Delhi", "789456", "91 7412589631", "yash456@gmail.com");
-        addContact("Ajay", "Matkar", "Chembur", "Mumbai", "Maharashtra", "456123", "91 8523697412", "ajay789@gmail.com");
+        addContact("Yash", "Verma", "Chembur", "Mumbai", "Maharashtra", "456123", "91 8523697412", "ajay789@gmail.com");
         addContact("Aman", "Nikam", "Boriwali", "Mumbai", "Maharashtra", "401 567", "918562497412", "aman789@gmail.com");
         if (addressBookContactArr.length != 0)
             console.log("Added The Default Contacts Succesfully");
@@ -188,11 +190,11 @@ function countContact() {
     }
 }
 
-//Function to perform addressbook operations(UC3-UC5)
+//Function to perform addressbook operations(UC3-UC7)
 function addressBookOperations() {
     try {
         while (true) {
-            console.log("1: Add New Contact \n2: Add Default Contacts \n3: Display \n4: Edit And View Contact \n5: Delete Contact \n6: Count Contacts\n7: Exit");
+            console.log("1: Add New Contact \n2: Add Default Contacts \n3: Display Contact\n4: Edit And View Contact \n5: Delete Contact \n6: Count Contacts\n7: Exit");
             switch (parseInt(prompt('Enter the choice : '))) {
                 case 1:
                     getContactDetails();
@@ -225,5 +227,5 @@ function addressBookOperations() {
         console.error(e);
     }
 }
-//Calling the addressbook operation functions(UC3-UC5)
+//Calling the addressbook operation functions(UC3-UC7)
 addressBookOperations();
