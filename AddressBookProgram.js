@@ -110,7 +110,7 @@ function displayContact() {
 //Function to view edit contacts based on the given name(UC4)
 function viewAndEditContact() {
     try {
-        let name = prompt('Enter Your Name To View And Modify Contact : ');
+        let name = prompt('Enter The Name Of Contact View And Modify : ');
         addressBookContactArr.forEach((contact) => {
             if (contact.firstName == name) {
                 console.log(contact.toString());
@@ -165,11 +165,24 @@ function viewAndEditContact() {
     }
 }
 
-//Function to perform addressbook operations(UC3-UC4)
+//Function to delete contact based on name(UC5)
+function deleteContact() {
+    try {
+        let name = prompt('Enter The Name Of The Contact To View And Modify Contact : ');
+        const index = addressBookContactArr.findIndex((contact) => contact.firstName == name);;
+        //using splice remove the element
+        if (index != -1)
+            addressBookContactArr.splice(index, 1);
+    } catch (e) {
+        console.error(e);
+    }
+}
+
+//Function to perform addressbook operations(UC3-UC5)
 function addressBookOperations() {
     try {
         while (true) {
-            console.log("1: Add New Contact \n2: Add Default Contacts \n3: Display \n4: Edit And View Contact \n5: Exit");
+            console.log("1: Add New Contact \n2: Add Default Contacts \n3: Display \n4: Edit And View Contact \n5: Delete Contact \n6: Exit");
             switch (parseInt(prompt('Enter the choice : '))) {
                 case 1:
                     getContactDetails();
@@ -184,6 +197,9 @@ function addressBookOperations() {
                     viewAndEditContact();
                     break;
                 case 5:
+                    deleteContact();
+                    break;
+                case 6:
                     console.log("Exited");
                     process.exit(1)
                     break;
@@ -196,5 +212,5 @@ function addressBookOperations() {
         console.error(e);
     }
 }
-//Calling the addressbook operation functions(UC3-UC4)
+//Calling the addressbook operation functions(UC3-UC5)
 addressBookOperations();
