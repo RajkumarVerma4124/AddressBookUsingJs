@@ -70,7 +70,7 @@ function addContact(firstName, lastName, address, city, state, zipCode, phoneNum
 //Fucntion to add default contact into an array(C3)
 function addDefaultContactDetails() {
     try {
-        addContact("Rajkumar", "Verma", "Ghansoli", "NaviMumbai", "Maharashtra", "456123", "91 9517534561", "raj123@gmail.com");
+        addContact("Rajkumar", "Verma", "Ghansoli", "NaviMumbai", "Maharashtra", "456321", "91 9517534561", "raj123@gmail.com");
         addContact("Yash", "Verma", "Sec-45", "Noida", "Delhi", "789456", "91 7412589631", "yash456@gmail.com");
         addContact("Ajay", "Matkar", "Chembur", "Mumbai", "Maharashtra", "456123", "91 8523697412", "ajay789@gmail.com");
         addContact("Aman", "Nikam", "Boriwali", "Mumbai", "Maharashtra", "401 567", "918562497412", "aman789@gmail.com");
@@ -224,21 +224,45 @@ function countPersonsByCityOrState() {
     }
 }
 
-//Function to sort the contacts by name(UC11)
-function sortContactsByName() {
+//Function to sort the contacts by name(UC11&UC12)
+function sortContacts() {
     try {
-        addressBookContactArr.sort((x, y) => x.firstName > y.firstName ? 1 : -1);
-        console.log(`\nContacts Sorted By First Name : \n${addressBookContactArr.join("\n")}`)
+        while (true) {
+            console.log("\n1: Sort By Name \n2: Sort By City Name \n3: Sort By State Name \n4: Sort By Zipcode \n5: Go Back");
+            switch (parseInt(prompt("Enter Your Choice From Above : "))) {
+                case 1:
+                    addressBookContactArr.sort((x, y) => x.firstName > y.firstName ? 1 : -1);
+                    console.log(`\nContacts Sorted By First Name : \n${addressBookContactArr.join("\n")}`)
+                    break;
+                case 2:
+                    addressBookContactArr.sort((x, y) => x.city > y.city ? 1 : -1);
+                    console.log(`\nContacts Sorted By City Name : \n${addressBookContactArr.join("\n")}`)
+                    break;
+                case 3:
+                    addressBookContactArr.sort((x, y) => x.state > y.state ? 1 : -1);
+                    console.log(`\nContacts Sorted By State Name : \n${addressBookContactArr.join("\n")}`)
+                    break;
+                case 4:
+                    addressBookContactArr.sort((x, y) => x.zipCode > y.zipCode ? 1 : -1);
+                    console.log(`\nContacts Sorted By ZipCode : \n${addressBookContactArr.join("\n")}`)
+                    break;
+                case 5:
+                    return;
+                default:
+                    console.log("Wrong Choice")
+                    continue;
+            }
+        }
     } catch (e) {
         console.error(e);
     }
 }
-//Function to perform addressbook operations(UC3-UC11)
+//Function to perform addressbook operations(UC3-UC12)
 function addressBookOperations() {
     try {
         while (true) {
             console.log("1: Add New Contact \n2: Add Default Contacts \n3: Display Contact\n4: Edit And View Contact \n5: Delete Contact \n6: Count Contacts \n7: Search Person \n8: View Persons By City Or State \
-                \n9: Count Persons By City Or State \n10: Sort Contacts By Name \n11: Exit ");
+                \n9: Count Persons By City Or State \n10: Sort Contacts \n11: Exit ");
             switch (parseInt(prompt('Enter the choice : '))) {
                 case 1:
                     getContactDetails();
@@ -268,7 +292,7 @@ function addressBookOperations() {
                     countPersonsByCityOrState();
                     break;
                 case 10:
-                    sortContactsByName();
+                    sortContacts();
                     break;
                 case 11:
                     console.log("Exited");
@@ -283,5 +307,5 @@ function addressBookOperations() {
         console.error(e);
     }
 }
-//Calling the addressbook operation functions(UC3-UC11)
+//Calling the addressbook operation functions(UC3-UC12)
 addressBookOperations();
