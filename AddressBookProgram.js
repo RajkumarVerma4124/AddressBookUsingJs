@@ -191,17 +191,33 @@ function countContact() {
 }
 
 //Function to seach person in a particular city or state(UC8)
-function seachPerson(city, state) {
-    let cityOrState = prompt("Enter A City Or State Name To Find Person : ");
-    let contact = addressBookContactArr.filter((contact) => contact.city == cityOrState || contact.state == cityOrState);
-    console.log(contact.join("\n"));
+function seachPersonByCityOrState() {
+    try {
+        let cityOrState = prompt("Enter A City Or State Name To Find Person : ");
+        let contact = addressBookContactArr.filter((contact) => contact.city == cityOrState || contact.state == cityOrState);
+        console.log(contact.join("\n"));
+    } catch (e) {
+        console.error(e);
+    }
 }
 
-//Function to perform addressbook operations(UC3-UC7)
+//Function to view person by city or state(UC9)
+function viewPersonsByCityOrState() {
+    try {
+        let cityOrState = prompt("Enter A City Or State Name To Find Person : ");
+        addressBookContactArr.filter((contact) => contact.city == cityOrState || contact.state == cityOrState).map((cs) => {
+            cs.city.includes(cityOrState) ? console.log(`${cs.firstName} ${cs.lastName} Lives In City ${cs.city}`) : console.log(`${cs.firstName} ${cs.lastName} Lives In State ${cs.state}`)
+        });
+    } catch (e) {
+        console.error(e);
+    }
+}
+
+//Function to perform addressbook operations(UC3-UC9)
 function addressBookOperations() {
     try {
         while (true) {
-            console.log("1: Add New Contact \n2: Add Default Contacts \n3: Display Contact\n4: Edit And View Contact \n5: Delete Contact \n6: Count Contacts \n7: Search Person \n8: Exit");
+            console.log("1: Add New Contact \n2: Add Default Contacts \n3: Display Contact\n4: Edit And View Contact \n5: Delete Contact \n6: Count Contacts \n7: Search Person \n8: View Persons By City Or State \n9: Exit");
             switch (parseInt(prompt('Enter the choice : '))) {
                 case 1:
                     getContactDetails();
@@ -222,9 +238,12 @@ function addressBookOperations() {
                     countContact();
                     break;
                 case 7:
-                    seachPerson();
+                    seachPersonByCityOrState();
                     break;
                 case 8:
+                    viewPersonsByCityOrState();
+                    break;
+                case 9:
                     console.log("Exited");
                     process.exit(1)
                     break;
@@ -237,5 +256,5 @@ function addressBookOperations() {
         console.error(e);
     }
 }
-//Calling the addressbook operation functions(UC3-UC7)
+//Calling the addressbook operation functions(UC3-UC9)
 addressBookOperations();
