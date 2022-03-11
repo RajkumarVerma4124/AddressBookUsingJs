@@ -178,11 +178,21 @@ function deleteContact() {
     }
 }
 
+//Function to count contact in addressbook(UC6)
+function countContact() {
+    try {
+        let countContact = addressBookContactArr.reduce((contact) => contact + 1, 0)
+        console.log(`Total Number Of Contacts Is : ${countContact}`);
+    } catch (e) {
+        console.error(e);
+    }
+}
+
 //Function to perform addressbook operations(UC3-UC5)
 function addressBookOperations() {
     try {
         while (true) {
-            console.log("1: Add New Contact \n2: Add Default Contacts \n3: Display \n4: Edit And View Contact \n5: Delete Contact \n6: Exit");
+            console.log("1: Add New Contact \n2: Add Default Contacts \n3: Display \n4: Edit And View Contact \n5: Delete Contact \n6: Count Contacts\n7: Exit");
             switch (parseInt(prompt('Enter the choice : '))) {
                 case 1:
                     getContactDetails();
@@ -200,6 +210,9 @@ function addressBookOperations() {
                     deleteContact();
                     break;
                 case 6:
+                    countContact();
+                    break;
+                case 7:
                     console.log("Exited");
                     process.exit(1)
                     break;
