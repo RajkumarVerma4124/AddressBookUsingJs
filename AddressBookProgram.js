@@ -72,7 +72,7 @@ function addDefaultContactDetails() {
     try {
         addContact("Rajkumar", "Verma", "Ghansoli", "NaviMumbai", "Maharashtra", "456123", "91 9517534561", "raj123@gmail.com");
         addContact("Yash", "Verma", "Sec-45", "Noida", "Delhi", "789456", "91 7412589631", "yash456@gmail.com");
-        addContact("Yash", "Verma", "Chembur", "Mumbai", "Maharashtra", "456123", "91 8523697412", "ajay789@gmail.com");
+        addContact("Ajay", "Matkar", "Chembur", "Mumbai", "Maharashtra", "456123", "91 8523697412", "ajay789@gmail.com");
         addContact("Aman", "Nikam", "Boriwali", "Mumbai", "Maharashtra", "401 567", "918562497412", "aman789@gmail.com");
         if (addressBookContactArr.length != 0)
             console.log("Added The Default Contacts Succesfully");
@@ -190,11 +190,18 @@ function countContact() {
     }
 }
 
+//Function to seach person in a particular city or state(UC8)
+function seachPerson(city, state) {
+    let cityOrState = prompt("Enter A City Or State Name To Find Person : ");
+    let contact = addressBookContactArr.filter((contact) => contact.city == cityOrState || contact.state == cityOrState);
+    console.log(contact.join("\n"));
+}
+
 //Function to perform addressbook operations(UC3-UC7)
 function addressBookOperations() {
     try {
         while (true) {
-            console.log("1: Add New Contact \n2: Add Default Contacts \n3: Display Contact\n4: Edit And View Contact \n5: Delete Contact \n6: Count Contacts\n7: Exit");
+            console.log("1: Add New Contact \n2: Add Default Contacts \n3: Display Contact\n4: Edit And View Contact \n5: Delete Contact \n6: Count Contacts \n7: Search Person \n8: Exit");
             switch (parseInt(prompt('Enter the choice : '))) {
                 case 1:
                     getContactDetails();
@@ -215,6 +222,9 @@ function addressBookOperations() {
                     countContact();
                     break;
                 case 7:
+                    seachPerson();
+                    break;
+                case 8:
                     console.log("Exited");
                     process.exit(1)
                     break;
