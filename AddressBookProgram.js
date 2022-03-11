@@ -67,7 +67,7 @@ function addContact(firstName, lastName, address, city, state, zipCode, phoneNum
     }
 }
 
-//Fucntion to add default contact into an array(C3)
+//Function to add default contact into an array(UC3)
 function addDefaultContactDetails() {
     try {
         addContact("Rajkumar", "Verma", "Ghansoli", "NaviMumbai", "Maharashtra", "456321", "91 9517534561", "raj123@gmail.com");
@@ -307,5 +307,5 @@ function addressBookOperations() {
         console.error(e);
     }
 }
-//Calling the addressbook operation functions(UC3-UC12)
+//Calling the addressbook operations functions(UC3-UC12)
 addressBookOperations();
